@@ -1,4 +1,4 @@
-package driver;
+package com.itgirls.FW.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
