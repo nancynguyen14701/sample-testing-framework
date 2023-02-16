@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="test_suite">
-    <test name="IT Department">
+<suite name="test_suite" parallel="methods" thread-count="3">
+    <test name="IT Department 1">
+        <classes>
+            <class name="com.itgirls.testsuite.LoginTest"/>
+        </classes>
+    </test> <!-- Test -->
+
+    <test name="IT Department 2">
         <classes>
             <class name="com.itgirls.testsuite.LoginTest"/>
         </classes>
