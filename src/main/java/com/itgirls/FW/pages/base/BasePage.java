@@ -1,4 +1,27 @@
 package com.itgirls.FW.pages.base;
 
-public class BasePage {
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+public class BasePage extends AbstractPage implements ICommonPage {
+    private final RemoteWebDriver driver;
+
+    public BasePage(RemoteWebDriver driver) {
+        this.driver = driver;
+        initElement();
+    }
+
+    @Override
+    public void initElement() {
+        PageFactory.initElements(getDriver(), this);
+    }
+
+    @Override
+    public RemoteWebDriver getDriver() {
+        return driver;
+    }
+
+    public void navigateTo(String url){
+        getDriver().get(url);
+    }
 }
