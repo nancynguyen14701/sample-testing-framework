@@ -1,4 +1,6 @@
 package com.itgirls.FW.pages.base;
 
-public class AbstractPage {
+import com.itgirls.FW.utilities.AbstractLog;
+
+public class AbstractPage extends AbstractLog {
 }
