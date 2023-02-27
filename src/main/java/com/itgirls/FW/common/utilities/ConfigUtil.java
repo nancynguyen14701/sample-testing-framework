@@ -32,7 +32,7 @@ public class ConfigUtil {
         return properties.getProperty(propertyKey);
     }
 
-    public static void setPropValue(String propertyKey, String propertyValue) {
+    public static void setPropertiesValue(String propertyKey, String propertyValue) {
         try {
             fileOut = new FileOutputStream(DIR_PATH + propertiesFilePath);
             properties.setProperty(propertyKey, propertyValue);
