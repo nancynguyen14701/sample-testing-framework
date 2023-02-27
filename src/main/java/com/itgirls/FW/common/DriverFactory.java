@@ -1,8 +1,7 @@
-package com.itgirls.FW.driver;
+package com.itgirls.FW.common;
 
-import com.itgirls.FW.utilities.Constants;
+import com.itgirls.FW.common.Constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,12 +12,12 @@ import java.time.Duration;
 
 public class DriverFactory {
     private static RemoteWebDriver driver;
-    public static void createNewBrowserSession(String browser){
+    public static void createNewBrowserSession(Constants.Browser browser){
         switch(browser){
-            case Constants.CHROME_BROWSER:
+            case CHROME:
                 driver = initChromeDriver();
                 break;
-            case Constants.FIREFOX_BROWSER:
+            case FIREFOX:
                 driver = initFirefoxDriver();
                 break;
         }

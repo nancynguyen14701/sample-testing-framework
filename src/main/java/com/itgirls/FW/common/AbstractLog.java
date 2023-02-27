@@ -1,4 +1,4 @@
-package com.itgirls.FW.utilities;
+package com.itgirls.FW.common;
 
 
 import org.apache.logging.log4j.LogManager;

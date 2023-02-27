@@ -1,22 +1,25 @@
 package com.itgirls.testsuite.base;
 
-import com.itgirls.FW.driver.DriverFactory;
-import com.itgirls.FW.utilities.AbstractLog;
+import com.itgirls.FW.common.AbstractLog;
+import com.itgirls.FW.common.DriverFactory;
+import com.itgirls.FW.common.utilities.ConfigUtil;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
+import static com.itgirls.FW.common.Constants.Browser;
+
 public class BaseTest extends AbstractLog {
     String sBrowser;
+
     @BeforeTest
-    public void initializeDriver(){
-        DriverFactory.createNewBrowserSession(System.getProperty("browser"));
-        logger.info("This is before test log");
-        logger.fatal("This is before test log");
-        logger.error("This is before test log");
+    public void initializeDriver() {
+        ConfigUtil.loadPropertiesFile();
+        // valueOf() parses string CHROME to enum CHROME
+        DriverFactory.createNewBrowserSession((Browser.valueOf(ConfigUtil.BROWSER_NAME)));
     }
 
     @AfterTest
-    public void cleanTest(){
+    public void cleanTest() {
         DriverFactory.getDriver().quit();
     }
 

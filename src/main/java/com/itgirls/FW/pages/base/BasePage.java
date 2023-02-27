@@ -21,7 +21,4 @@ public class BasePage extends AbstractPage implements ICommonPage {
         return driver;
     }
 
-    public void navigateTo(String url){
-        getDriver().get(url);
-    }
 }
