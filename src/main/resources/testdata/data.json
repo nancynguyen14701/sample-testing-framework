@@ -1,0 +1,22 @@
+{
+  "loginWithValidInfo": [
+    {
+      "username": "standard_user",
+      "password": "secret_sauce"
+    },
+    {
+      "username": "problem_user",
+      "password": "secret_sauce"
+    }
+  ],
+  "loginWithInvalidInfo": [
+    {
+      "username": "standard_use",
+      "password": "secret_sauce"
+    },
+    {
+      "username": "problem_user",
+      "password": "secret_sauce"
+    }
+  ]
+}
