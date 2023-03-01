@@ -2,7 +2,6 @@ package com.itgirls.FW.common.utilities;
 
 
 import com.itgirls.FW.common.AbstractLog;
-import net.bytebuddy.implementation.bind.annotation.RuntimeType;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -14,7 +13,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
 public class JsonUtil extends AbstractLog {
-    @RuntimeType
+
     private static Method findMethod(Class testClass, String testcaseName) {
         Method[] methods = testClass.getDeclaredMethods();
         for (int i = 0; i < methods.length; i++) {
@@ -36,9 +35,8 @@ public class JsonUtil extends AbstractLog {
         Method method = findMethod(testClass, testcaseName);
         JSONParser jsonParser = new JSONParser();
         JSONObject jsonObject = new JSONObject();
-
         try {
-            Object obj = jsonParser.parse(new FileReader("src/main/resources/testdata/data.json"));
+            Object obj = jsonParser.parse(new FileReader("src/main/resources/testdata/" + testClass.getSimpleName() + ".json"));
             jsonObject = (JSONObject) obj;
         } catch (IOException | ParseException e) {
             e.printStackTrace();
