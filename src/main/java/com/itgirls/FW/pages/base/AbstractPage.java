@@ -162,12 +162,14 @@ public class AbstractPage extends AbstractLog {
 
     /***
      * Check if element is present
-     * @param locator locator strategy, id=>example, name=>example, css=>#example,
-     *      *                tag=>example, xpath=>//example, link=>example
      * @return boolean if element is present or not
      */
     public boolean isElementPresent(WebElement element) {
         return element.isDisplayed();
+    }
+
+    public String getTextValue(WebElement element) {
+        return element.getText();
     }
 
     public void waitForVisibleElement(WebElement element, int waitTimeOut) {

@@ -21,4 +21,5 @@ public class BasePage extends AbstractPage implements ICommonPage {
         return driver;
     }
 
+
 }

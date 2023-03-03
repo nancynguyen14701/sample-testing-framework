@@ -1,7 +1,5 @@
 package com.itgirls.FW.common;
 
-import com.beust.jcommander.Strings;
-
 public class Constants {
     public enum Browser {
         FIREFOX,
@@ -9,4 +7,5 @@ public class Constants {
     }
 
     public static final String URL = "url";
+    public static final String LOCKED_OUT_USER = "Epic sadface: Sorry, this user has been locked out.";
 }
