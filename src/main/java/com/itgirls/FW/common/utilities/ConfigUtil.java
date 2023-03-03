@@ -12,7 +12,7 @@ public class ConfigUtil {
 
     public static final String DIR_PATH = System.getProperty("user.dir");
     public static final String BROWSER_NAME = System.getProperty("browser").toUpperCase();
-    private static String propertiesFilePath = "/src/main/resources/testdata/testsettings.properties";
+    private static String propertiesFilePath = "/src/test/resources/testdata/testsettings.properties";
     private static Properties properties;
     private static FileInputStream fileIn;
     private static FileOutputStream fileOut;

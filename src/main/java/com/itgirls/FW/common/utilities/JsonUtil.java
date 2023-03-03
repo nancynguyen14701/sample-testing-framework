@@ -36,7 +36,7 @@ public class JsonUtil extends AbstractLog {
         JSONParser jsonParser = new JSONParser();
         JSONObject jsonObject = new JSONObject();
         try {
-            Object obj = jsonParser.parse(new FileReader("src/main/resources/testdata/" + testClass.getSimpleName() + ".json"));
+            Object obj = jsonParser.parse(new FileReader("src/test/resources/testdata/" + testClass.getSimpleName() + ".json"));
             jsonObject = (JSONObject) obj;
         } catch (IOException | ParseException e) {
             e.printStackTrace();

@@ -15,14 +15,14 @@ import static com.itgirls.FW.common.PageManager.getLoginPage;
 
 public class BaseTest extends AbstractLog {
     @BeforeTest
-    public void initializeDriver() {
+    public void setup() {
         ConfigUtil.loadPropertiesFile();
-        // valueOf() parses string CHROME to enum CHROME
-        DriverFactory.createNewBrowserSession((Browser.valueOf(ConfigUtil.BROWSER_NAME)));
     }
 
     @BeforeMethod
-    public void loadDefaultPage() {
+    public void initializeDriver() {
+        // valueOf() parses string CHROME to enum CHROME
+        DriverFactory.createNewBrowserSession((Browser.valueOf(ConfigUtil.BROWSER_NAME)));
         getLoginPage().navigateTo(ConfigUtil.getPropertiesValue(Constants.URL));
     }
 
@@ -33,7 +33,7 @@ public class BaseTest extends AbstractLog {
 
     @AfterTest
     public void tearDown() {
-        DriverFactory.getDriver().quit();
+        DriverFactory.closeAllDrivers();
     }
 
 }

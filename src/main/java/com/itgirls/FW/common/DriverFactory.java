@@ -1,6 +1,5 @@
 package com.itgirls.FW.common;
 
-import com.itgirls.FW.common.Constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -9,45 +8,71 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
-public class DriverFactory {
-    private static RemoteWebDriver driver;
-    public static void createNewBrowserSession(Constants.Browser browser){
-        switch(browser){
+public class DriverFactory extends AbstractLog {
+    private static List<RemoteWebDriver> driverList = new ArrayList<>();
+    private static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
+
+    public static void createNewBrowserSession(Constants.Browser browser) {
+        switch (browser) {
             case CHROME:
-                driver = initChromeDriver();
+                initChromeDriver();
                 break;
             case FIREFOX:
-                driver = initFirefoxDriver();
+                initFirefoxDriver();
                 break;
         }
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        logger.info("Driver with sessionID:" + driver.get().getSessionId().toString() + " has been created");
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    private static RemoteWebDriver initChromeDriver(){
+    private static void initChromeDriver() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = setOptionsForChrome();
-        return new ChromeDriver(options);
+        driver.set(new ChromeDriver(options));
+        driverList.add(driver.get());
     }
 
-    private static RemoteWebDriver initFirefoxDriver(){
+    private static void initFirefoxDriver() {
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions options = setOptionsForFirefox();
-        return new FirefoxDriver(options);
+        driver.set(new FirefoxDriver(options));
+        driverList.add(driver.get());
     }
 
-    private static ChromeOptions setOptionsForChrome(){
+    private static ChromeOptions setOptionsForChrome() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         return options;
     }
-    private static FirefoxOptions setOptionsForFirefox(){
+
+    private static FirefoxOptions setOptionsForFirefox() {
         FirefoxOptions options = new FirefoxOptions();
         options.addArguments("start-maximized");
         return options;
     }
-    public static RemoteWebDriver getDriver(){
-        return driver;
+
+    public static RemoteWebDriver getDriver() {
+        return driver.get();
+    }
+
+    public static void quitDriver() {
+        driver.get().quit();
+    }
+
+    public static void closeAllDrivers() {
+        logger.info("Total of web drivers: " + driverList.size());
+        logger.info("Release all web drivers");
+        for (RemoteWebDriver dv : driverList) {
+            try {
+                dv.close();
+                dv.quit();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        driverList.clear();
     }
 }
