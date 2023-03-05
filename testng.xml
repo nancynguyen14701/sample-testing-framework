@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="demo">
+<suite name="demo" parallel="methods">
     <listeners>
         <listener class-name="com.itgirls.testsuite.base.TestListeners"></listener>
     </listeners>
-    <test name="LoginTest" parallel="true">
-        <!--    <test name="LoginTest">-->
+    <!--    <test name="LoginTest" parallel="true">-->
+    <test name="LoginTest">
         <classes>
             <class name="com.itgirls.testsuite.LoginTest">
                 <methods>
